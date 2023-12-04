@@ -4,7 +4,6 @@ import time
 import cv2
 import numpy as np
 from PIL import Image, ImageTk
-from keras.models import load_model
 import NailBiteDetector as nbd
 
 
@@ -65,6 +64,7 @@ class App:
         self.root = root
         root.geometry("400x600")  # Adjust the size of the window
         self.root.configure(background="systemWindowBackgroundColor")
+        self.root.title("Anti-NailBiter")
         self.running = False
 
         # Initialize the title label
@@ -162,6 +162,7 @@ class App:
             print("stopped")
 
     def end_program(self):
+        self.root.focus_force()
         self.running = False
         self.root.after(100, lambda: stop_thread(self.thread))
         self.root.after(200, lambda: self.root.destroy())
